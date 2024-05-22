@@ -1,27 +1,15 @@
-# App
+# Улучшение кода Angular 17.3
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
+## Описание задачи
 
-## Development server
+Целью данного проекта является улучшение существующего кода на Angular 17.3. Текущий код работает корректно, но написан некачественно. Задача состоит в том, чтобы оптимизировать и улучшить код, сохраняя всю функциональность приложения.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Цели
 
-## Code scaffolding
+- Оптимизация и рефакторинг существующего кода.
+- Улучшение читаемости и поддерживаемости кода.
+- Сохранение всей текущей функциональности приложения.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Этот README файл служит для определения навыков разработчика в оптимизации и рефакторинге кода на Angular 17.3.
