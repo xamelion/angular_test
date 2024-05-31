@@ -65,10 +65,7 @@ export class TableComponent {
     this.handleIndeterminateCheckbox(totalSelected);
   }
 
-  handleIndeterminateCheckbox(total: any) {
-    const indeterminateCheckbox = document.getElementById(
-      'custom-checkbox-selectDeselectAll'
-    );
+  handleIndeterminateCheckbox(total: number) {
     let count = 0;
 
     this.issues.forEach((element: any) => {
@@ -78,15 +75,12 @@ export class TableComponent {
     });
 
     if (total === 0) {
-      (indeterminateCheckbox as any).indeterminate = false;
       this.selectDeselectAllIsChecked = false;
     }
     if (total > 0 && total < count) {
-      (indeterminateCheckbox as any).indeterminate = true;
       this.selectDeselectAllIsChecked = false;
     }
     if (total === count) {
-      (indeterminateCheckbox as any).indeterminate = false;
       this.selectDeselectAllIsChecked = true;
     }
   }
