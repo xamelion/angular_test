@@ -49,7 +49,7 @@ export class TableComponent {
       return element;
     });
     this.checkedState = updatedCheckedState;
-    console.log('handleOnChange', this.checkedState, position);
+
     const totalSelected = updatedCheckedState
       .map((element) => element.checked)
       .reduce((sum, currentState, index) => {
