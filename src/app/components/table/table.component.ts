@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { TableIssue } from '../../model/table';
+import {
+  ITableIssueViewModel,
+  IssueStatus,
+  TableIssue,
+} from '../../model/table';
 
 @Component({
   selector: 'app-table',
@@ -11,14 +15,17 @@ import { TableIssue } from '../../model/table';
 })
 export class TableComponent {
   @Input() set issues(value: TableIssue[]) {
-    this._issues = value;
+    this._issues = value.map((issue) => ({
+      ...issue,
+      isOpen: issue.status === IssueStatus.Open,
+    }));
 
     this.checkedState = Array(value.length).fill(false);
   }
-  get issues() {
+  get issues(): ITableIssueViewModel[] {
     return this._issues;
   }
-  private _issues: TableIssue[] = [];
+  private _issues: ITableIssueViewModel[] = [];
 
   selectDeselectAllIsChecked = false;
   numCheckboxesSelected = 0;
@@ -33,15 +40,14 @@ export class TableComponent {
 
     this.numCheckboxesSelected = totalSelected;
     this.selectDeselectAllIsChecked =
-      totalSelected ===
-      this.issues.filter((issue) => issue.status === 'open').length;
+      totalSelected === this.issues.filter((issue) => issue.isOpen).length;
   }
 
   handleSelectDeselectAll() {
     this.selectDeselectAllIsChecked = !this.selectDeselectAllIsChecked;
 
     this.checkedState = this.issues.map(
-      (issue) => issue.status === 'open' && this.selectDeselectAllIsChecked
+      (issue) => issue.isOpen && this.selectDeselectAllIsChecked
     );
 
     this.numCheckboxesSelected = this.selectDeselectAllIsChecked

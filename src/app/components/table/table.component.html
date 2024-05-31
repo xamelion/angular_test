@@ -23,14 +23,14 @@
   <tbody>
     <tr
       *ngFor="let issue of issues; index as index"
-      [class.openIssue]="issue.status === 'open'"
+      [class.openIssue]="issue.isOpen"
     >
       <td>
         <input
           class="checkbox"
           [type]="'checkbox'"
           [checked]="checkedState[index]"
-          [disabled]="issue.status !== 'open'"
+          [disabled]="!issue.isOpen"
           (change)="handleOnChange(index)"
         />
       </td>
@@ -39,8 +39,8 @@
       <td>
         <span
           [ngClass]="{
-            openCircle: issue.status === 'open',
-            resolvedCircle: issue.status !== 'open'
+            openCircle: issue.isOpen,
+            resolvedCircle: !issue.isOpen
           }"
         ></span>
       </td>
