@@ -30,20 +30,11 @@
       <tr class="getStylesTr(issue)" [ngStyle]="checkedState[index]">
         <td>
           <input
-            *ngIf="issue.status === 'open'"
             class="checkbox"
             [type]="'checkbox'"
-            [id]="'custom-checkbox-' + index"
-            [name]="issue.name"
-            [value]="issue.name"
             [checked]="checkedState[index].checked"
+            [disabled]="issue.status !== 'open'"
             (change)="handleOnChange(index)"
-          />
-          <input
-            *ngIf="issue.status !== 'open'"
-            class="checkbox"
-            [type]="'checkbox'"
-            disabled
           />
         </td>
         <td>{{ issue.name }}</td>
