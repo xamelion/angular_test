@@ -7,3 +7,8 @@ export interface TableIssue {
   numUsers: number;
   value: number;
 }
+
+export interface CheckedState {
+  checked: boolean;
+  backgroundColor: string;
+}

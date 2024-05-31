@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { TableIssue } from '../../model/table';
+import { Component, Input } from '@angular/core';
+import { CheckedState, TableIssue } from '../../model/table';
 
 @Component({
   selector: 'app-table',
@@ -9,19 +9,23 @@ import { TableIssue } from '../../model/table';
   standalone: true,
   imports: [CommonModule],
 })
-export class TableComponent implements OnInit {
-  @Input() issues: TableIssue[] = [];
+export class TableComponent {
+  @Input() set issues(value: TableIssue[]) {
+    this._issues = value;
 
-  selectDeselectAllIsChecked = false;
-  numCheckboxesSelected = 0;
-  checkedState: any;
-
-  ngOnInit() {
-    this.checkedState = new Array(this.issues.length).fill({
+    this.checkedState = Array(value.length).fill({
       checked: false,
       backgroundColor: '#ffffff',
     });
   }
+  get issues() {
+    return this._issues;
+  }
+  private _issues: TableIssue[] = [];
+
+  selectDeselectAllIsChecked = false;
+  numCheckboxesSelected = 0;
+  checkedState: CheckedState[] = [];
 
   getStylesTr(issue: any) {
     return issue.status === 'open' ? 'openIssue' : 'closedIssue';
