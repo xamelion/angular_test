@@ -1,21 +1,17 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
-import { ChildComponent } from './child.component';
 import { TableComponent } from './components/table/table.component';
 import { IssueStatus, TableIssue } from './model/table';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ChildComponent, TableComponent],
+  imports: [CommonModule, TableComponent],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  styleUrls: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  isVisible = false;
-  prefetchCondition = false;
   issues: TableIssue[] = [
     {
       id: 'e47f8d1a-7c3d-4b0f-8a7f-f8a7b8f72d3d',
