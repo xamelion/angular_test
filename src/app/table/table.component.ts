@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
   imports: [CommonModule],
 })
 export class Table implements OnInit {
-  @Input() issues: any;
+  @Input() issues: TableIssue[] = [];
 
   selectDeselectAllIsChecked = false;
   numCheckboxesSelected = 0;

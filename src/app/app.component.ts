@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './child.component';
 import { Table } from './table/table.component';
+import { TableIssue } from './model/table';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ import { Table } from './table/table.component';
 export class AppComponent {
   isVisible = false;
   prefetchCondition = false;
-  issues: any = [
+  issues: TableIssue[] = [
     {
       id: 'e47f8d1a-7c3d-4b0f-8a7f-f8a7b8f72d3d',
       name: 'TypeError',
