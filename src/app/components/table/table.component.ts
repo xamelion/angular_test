@@ -27,12 +27,6 @@ export class TableComponent {
   numCheckboxesSelected = 0;
   checkedState: CheckedState[] = [];
 
-  onClick(index: number, issue: TableIssue) {
-    if (issue.status === 'open') {
-      this.handleOnChange(index);
-    }
-  }
-
   handleOnChange(position: number) {
     const updatedCheckedState = this.checkedState.map((element, index) => {
       if (position === index) {
