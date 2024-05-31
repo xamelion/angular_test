@@ -49,28 +49,7 @@ export class TableComponent {
         return sum;
       }, 0);
     this.numCheckboxesSelected = totalSelected;
-    console.log;
-    this.handleIndeterminateCheckbox(totalSelected);
-  }
-
-  handleIndeterminateCheckbox(total: number) {
-    let count = 0;
-
-    this.issues.forEach((element) => {
-      if (element.status === 'open') {
-        count += 1;
-      }
-    });
-
-    if (total === 0) {
-      this.selectDeselectAllIsChecked = false;
-    }
-    if (total > 0 && total < count) {
-      this.selectDeselectAllIsChecked = false;
-    }
-    if (total === count) {
-      this.selectDeselectAllIsChecked = true;
-    }
+    this.selectDeselectAllIsChecked = totalSelected === this.issues.length;
   }
 
   handleSelectDeselectAll(event: Event) {
