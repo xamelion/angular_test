@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { TableIssue } from '../../model/table';
 
 @Component({
   selector: 'app-table',
@@ -8,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
 })
-export class Table implements OnInit {
+export class TableComponent implements OnInit {
   @Input() issues: TableIssue[] = [];
 
   selectDeselectAllIsChecked = false;

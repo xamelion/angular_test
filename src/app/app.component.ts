@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './child.component';
-import { Table } from './table/table.component';
+import { TableComponent } from './components/table/table.component';
 import { TableIssue } from './model/table';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, ChildComponent, Table],
+  imports: [CommonModule, RouterOutlet, ChildComponent, TableComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
