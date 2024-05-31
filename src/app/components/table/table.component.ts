@@ -21,11 +21,15 @@ export class TableComponent {
     }));
 
     this.checkedState = Array(value.length).fill(false);
+
+    this.openIssuesCount = this.issues.filter((issue) => issue.isOpen).length;
   }
   get issues(): ITableIssueViewModel[] {
     return this._issues;
   }
   private _issues: ITableIssueViewModel[] = [];
+
+  private openIssuesCount = 0;
 
   selectDeselectAllIsChecked = false;
   numCheckboxesSelected = 0;
@@ -39,8 +43,7 @@ export class TableComponent {
     const totalSelected = this.checkedState.filter(Boolean).length;
 
     this.numCheckboxesSelected = totalSelected;
-    this.selectDeselectAllIsChecked =
-      totalSelected === this.issues.filter((issue) => issue.isOpen).length;
+    this.selectDeselectAllIsChecked = totalSelected === this.openIssuesCount;
   }
 
   handleSelectDeselectAll() {
@@ -51,7 +54,7 @@ export class TableComponent {
     );
 
     this.numCheckboxesSelected = this.selectDeselectAllIsChecked
-      ? this.checkedState.filter(Boolean).length
+      ? this.openIssuesCount
       : 0;
   }
 }
