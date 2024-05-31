@@ -32,17 +32,18 @@ export class TableComponent {
     const totalSelected = this.checkedState.filter(Boolean).length;
 
     this.numCheckboxesSelected = totalSelected;
-    this.selectDeselectAllIsChecked = totalSelected === this.issues.length;
+    this.selectDeselectAllIsChecked =
+      totalSelected ===
+      this.issues.filter((issue) => issue.status === 'open').length;
   }
 
-  handleSelectDeselectAll(event: Event) {
-    const { checked } = <HTMLInputElement>event.target;
+  handleSelectDeselectAll() {
+    this.selectDeselectAllIsChecked = !this.selectDeselectAllIsChecked;
 
     this.checkedState = this.issues.map(
-      (issue) => issue.status === 'open' && checked
+      (issue) => issue.status === 'open' && this.selectDeselectAllIsChecked
     );
 
-    this.selectDeselectAllIsChecked = !this.selectDeselectAllIsChecked;
     this.numCheckboxesSelected = this.selectDeselectAllIsChecked
       ? this.checkedState.filter(Boolean).length
       : 0;
