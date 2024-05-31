@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import {
   ITableIssueViewModel,
   IssueStatus,
@@ -12,6 +12,7 @@ import {
   styleUrls: ['./table.component.css'],
   standalone: true,
   imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TableComponent {
   @Input() set issues(value: TableIssue[]) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ChildComponent } from './child.component';
@@ -11,6 +11,7 @@ import { IssueStatus, TableIssue } from './model/table';
   imports: [CommonModule, RouterOutlet, ChildComponent, TableComponent],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
   isVisible = false;
