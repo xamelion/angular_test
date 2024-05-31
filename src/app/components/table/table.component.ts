@@ -27,34 +27,32 @@ export class TableComponent {
   numCheckboxesSelected = 0;
   checkedState: CheckedState[] = [];
 
-  getStylesTr(issue: any) {
+  getStylesTr(issue: TableIssue) {
     return issue.status === 'open' ? 'openIssue' : 'closedIssue';
   }
 
-  onClick(index: any, issue: any) {
+  onClick(index: number, issue: TableIssue) {
     if (issue.status === 'open') {
       this.handleOnChange(index);
     }
   }
 
-  handleOnChange(position: any) {
-    const updatedCheckedState = this.checkedState.map(
-      (element: any, index: any) => {
-        if (position === index) {
-          return {
-            ...element,
-            checked: !element.checked,
-            backgroundColor: element.checked ? '#ffffff' : '#eeeeee',
-          };
-        }
-        return element;
+  handleOnChange(position: number) {
+    const updatedCheckedState = this.checkedState.map((element, index) => {
+      if (position === index) {
+        return {
+          ...element,
+          checked: !element.checked,
+          backgroundColor: element.checked ? '#ffffff' : '#eeeeee',
+        };
       }
-    );
+      return element;
+    });
     this.checkedState = updatedCheckedState;
     console.log('handleOnChange', this.checkedState, position);
     const totalSelected = updatedCheckedState
-      .map((element: any) => element.checked)
-      .reduce((sum: any, currentState: any, index: any) => {
+      .map((element) => element.checked)
+      .reduce((sum, currentState, index) => {
         if (currentState) {
           return sum + this.issues[index].value;
         }
@@ -68,7 +66,7 @@ export class TableComponent {
   handleIndeterminateCheckbox(total: number) {
     let count = 0;
 
-    this.issues.forEach((element: any) => {
+    this.issues.forEach((element) => {
       if (element.status === 'open') {
         count += 1;
       }
@@ -85,11 +83,11 @@ export class TableComponent {
     }
   }
 
-  handleSelectDeselectAll(event: any) {
-    let { checked } = event.target;
+  handleSelectDeselectAll(event: Event) {
+    const { checked } = <HTMLInputElement>event.target;
 
-    const allTrueArray: any = [];
-    this.issues.forEach((element: any) => {
+    const allTrueArray: CheckedState[] = [];
+    this.issues.forEach((element) => {
       if (element.status === 'open') {
         allTrueArray.push({ checked: true, backgroundColor: '#eeeeee' });
       } else {
@@ -97,7 +95,7 @@ export class TableComponent {
       }
     });
 
-    const allFalseArray = new Array(this.issues.length).fill({
+    const allFalseArray: CheckedState[] = new Array(this.issues.length).fill({
       checked: false,
       backgroundColor: '#ffffff',
     });
@@ -108,8 +106,8 @@ export class TableComponent {
     }
 
     const totalSelected = (checked ? allTrueArray : allFalseArray)
-      .map((element: any) => element.checked)
-      .reduce((sum: any, currentState: any, index: any) => {
+      .map((element) => element.checked)
+      .reduce((sum, currentState, index) => {
         if (currentState && this.issues[index].status === 'open') {
           return sum + this.issues[index].value;
         }
