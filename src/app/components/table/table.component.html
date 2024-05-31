@@ -49,8 +49,12 @@
         <td>{{ issue.name }}</td>
         <td>{{ issue.message }}</td>
         <td>
-          <span class="openCircle" *ngIf="issue.status === 'open'"></span>
-          <span class="resolvedCircle" *ngIf="issue.status !== 'open'"></span>
+          <span
+            [ngClass]="{
+              openCircle: issue.status === 'open',
+              resolvedCircle: issue.status !== 'open'
+            }"
+          ></span>
         </td>
       </tr>
     </ng-container>
