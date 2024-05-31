@@ -31,7 +31,6 @@ export class TableComponent {
     const updatedCheckedState = this.checkedState.map((element, index) => {
       if (position === index) {
         return {
-          ...element,
           checked: !element.checked,
           backgroundColor: element.checked ? '#ffffff' : '#eeeeee',
         };
@@ -40,14 +39,10 @@ export class TableComponent {
     });
     this.checkedState = updatedCheckedState;
 
-    const totalSelected = updatedCheckedState
-      .map((element) => element.checked)
-      .reduce((sum, currentState, index) => {
-        if (currentState) {
-          return sum + this.issues[index].value;
-        }
-        return sum;
-      }, 0);
+    const totalSelected = this.checkedState.filter(
+      (element) => element.checked
+    ).length;
+
     this.numCheckboxesSelected = totalSelected;
     this.selectDeselectAllIsChecked = totalSelected === this.issues.length;
   }
