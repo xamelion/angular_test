@@ -5,17 +5,16 @@
         <input
           class="checkbox"
           [type]="'checkbox'"
-          [name]="'custom-checkbox-selectDeselectAll'"
-          [value]="'custom-checkbox-selectDeselectAll'"
           [checked]="selectDeselectAllIsChecked"
           (change)="handleSelectDeselectAll($event)"
         />
       </th>
       <th class="numChecked">
-        <span *ngIf="numCheckboxesSelected"
-          >Выбрано {{ numCheckboxesSelected }}</span
-        >
-        <span *ngIf="!numCheckboxesSelected">Нет</span>
+        <span>
+          {{
+            numCheckboxesSelected ? "Выбрано " + numCheckboxesSelected : "Нет"
+          }}
+        </span>
       </th>
     </tr>
     <tr>
