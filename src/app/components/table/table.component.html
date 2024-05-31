@@ -25,28 +25,29 @@
     </tr>
   </thead>
   <tbody>
-    <ng-container *ngFor="let issue of issues; index as index">
-      <tr class="getStylesTr(issue)" [ngStyle]="checkedState[index]">
-        <td>
-          <input
-            class="checkbox"
-            [type]="'checkbox'"
-            [checked]="checkedState[index].checked"
-            [disabled]="issue.status !== 'open'"
-            (change)="handleOnChange(index)"
-          />
-        </td>
-        <td>{{ issue.name }}</td>
-        <td>{{ issue.message }}</td>
-        <td>
-          <span
-            [ngClass]="{
-              openCircle: issue.status === 'open',
-              resolvedCircle: issue.status !== 'open'
-            }"
-          ></span>
-        </td>
-      </tr>
-    </ng-container>
+    <tr
+      *ngFor="let issue of issues; index as index"
+      [class.openIssue]="issue.status === 'open'"
+    >
+      <td>
+        <input
+          class="checkbox"
+          [type]="'checkbox'"
+          [checked]="checkedState[index].checked"
+          [disabled]="issue.status !== 'open'"
+          (change)="handleOnChange(index)"
+        />
+      </td>
+      <td>{{ issue.name }}</td>
+      <td>{{ issue.message }}</td>
+      <td>
+        <span
+          [ngClass]="{
+            openCircle: issue.status === 'open',
+            resolvedCircle: issue.status !== 'open'
+          }"
+        ></span>
+      </td>
+    </tr>
   </tbody>
 </table>

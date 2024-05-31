@@ -27,10 +27,6 @@ export class TableComponent {
   numCheckboxesSelected = 0;
   checkedState: CheckedState[] = [];
 
-  getStylesTr(issue: TableIssue) {
-    return issue.status === 'open' ? 'openIssue' : 'closedIssue';
-  }
-
   onClick(index: number, issue: TableIssue) {
     if (issue.status === 'open') {
       this.handleOnChange(index);
