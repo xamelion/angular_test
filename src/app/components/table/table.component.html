@@ -1,0 +1,49 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        <input
+          class="checkbox"
+          [type]="'checkbox'"
+          [checked]="selectDeselectAllIsChecked"
+          (change)="handleSelectDeselectAll()"
+        />
+      </th>
+      <th class="numChecked">
+        {{ numCheckboxesSelected ? "Выбрано " + numCheckboxesSelected : "Нет" }}
+      </th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Имя</th>
+      <th>Сообщение</th>
+      <th>Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="let issue of issues; index as index"
+      [class.openIssue]="issue.isOpen"
+    >
+      <td>
+        <input
+          class="checkbox"
+          [type]="'checkbox'"
+          [checked]="checkedState[index]"
+          [disabled]="!issue.isOpen"
+          (change)="handleOnChange(index)"
+        />
+      </td>
+      <td>{{ issue.name }}</td>
+      <td>{{ issue.message }}</td>
+      <td>
+        <span
+          [ngClass]="{
+            openCircle: issue.isOpen,
+            resolvedCircle: !issue.isOpen
+          }"
+        ></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
